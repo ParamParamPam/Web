@@ -1,0 +1,1 @@
+CREATE DATABASE appliances_online_store WITH ENCODING 'UTF-8';
