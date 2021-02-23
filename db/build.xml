@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project basedir="." default="all" name="setup_db">
+
+  <target name="delete_tables">
+    <sql classpath="${postgresql.classpath}"
+         driver="${postgresql.driver}"
+         url="${postgresql.localhost}"
+         userid="${postgresql.user}"
+         password="${postgresql.password}"
+         autocommit="True"
+         src="${db.dir}/AOS_delete_tables.sql"/>
+  </target>
+
+  <target name="delete_db">
+    <sql classpath="${postgresql.classpath}"
+         driver="${postgresql.driver}"
+         url="${postgresql.localhost}"
+         userid="${postgresql.user}"
+         password="${postgresql.password}"
+         autocommit="True"
+         src="${db.dir}/AOS_delete_db.sql"/>
+  </target>
+
+  <target name="create_db">
+    <sql classpath="${postgresql.classpath}"
+         driver="${postgresql.driver}"
+         url="${postgresql.localhost}"
+         userid="${postgresql.user}"
+         password="${postgresql.password}"
+         autocommit="True"
+         src="${db.dir}/AOS_create_db.sql"/>
+  </target>
+
+  <target name="init_db">
+    <sql classpath="${postgresql.classpath}"
+         driver="${postgresql.driver}"
+         url="${postgresql.localhost}${postgresql.database}"
+         userid="${postgresql.user}"
+         password="${postgresql.password}"
+         autocommit="True"
+         src="${db.dir}/AOS_init_db.sql"/>
+  </target>
+
+  <target name="insert_db">
+    <sql classpath="${postgresql.classpath}"
+         driver="${postgresql.driver}"
+         url="${postgresql.localhost}${postgresql.database}"
+         userid="${postgresql.user}"
+         password="${postgresql.password}"
+         autocommit="True"
+         src="${db.dir}/AOS_insert_db.sql"/>
+  </target>
+
+  <target name="all" depends="delete_tables, delete_db, create_db, init_db, insert_db"/>
+
+</project>
